@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       password: password_in.value
     };
 
-    fetch("http://localhost:5000/auth/login", {
+    fetch("https://customised-parking-site.netlify.app/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       password: password__up
     }
 
-    fetch('http://localhost:5000/users', {
+    fetch('https://customised-parking-site.netlify.app/users', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

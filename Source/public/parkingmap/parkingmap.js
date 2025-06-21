@@ -29,7 +29,7 @@ const complexName = "alpha";
 
 window.addEventListener('load', function() {
     
-    fetch('http://localhost:5000/ticket/alpha/slots')
+    fetch('https://customised-parking-site.netlify.app/ticket/alpha/slots')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);

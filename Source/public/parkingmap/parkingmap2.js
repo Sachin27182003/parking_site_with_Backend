@@ -28,7 +28,7 @@ const complexName = "beta";
 
 window.addEventListener('load', function() {
     
-    fetch('http://localhost:5000/ticket/beta/slots')
+    fetch('https://customised-parking-site.netlify.app/ticket/beta/slots')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);
