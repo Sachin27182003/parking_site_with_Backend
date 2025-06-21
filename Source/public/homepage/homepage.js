@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 logout_button.addEventListener('click', () => {
     // Make an API request to invalidate the session on the server
-    fetch('https://customised-parking-site.netlify.app/auth/logout', {
+    fetch('http://localhost:5000/auth/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

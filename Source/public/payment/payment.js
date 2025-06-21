@@ -74,7 +74,7 @@ async function loadScript(src) {
 
   async function createCustomer(customerData) {
     try {
-      const response = await fetch("https://customised-parking-site.netlify.app/ticket/create", {
+      const response = await fetch("http://localhost:5000/ticket/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -112,7 +112,7 @@ async function displayRazorpay() {
         receipt: `PS${Username}${Date.now()}`,
     }
 
-    const response = await fetch("https://customised-parking-site.netlify.app/payment/orders", {
+    const response = await fetch("http://localhost:5000/payment/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -153,7 +153,7 @@ async function displayRazorpay() {
                 razorpaySignature: response.razorpay_signature,
             };
 
-            const successResponse = await fetch("https://customised-parking-site.netlify.app/payment/success", {
+            const successResponse = await fetch("http://localhost:5000/payment/success", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
