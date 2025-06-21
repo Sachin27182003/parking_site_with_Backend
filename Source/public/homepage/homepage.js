@@ -100,7 +100,8 @@ logout_button.addEventListener('click', () => {
         'Content-Type': 'application/json',
         // The cookie with the authToken is automatically sent with the request if it's not HttpOnly
       },
-      credentials: 'same-origin' // To send cookies with the request (for same-domain cookies)
+      credentials: 'include' // To send cookies with the request (for same-domain cookies)
+      
     })
     .then(response => response.json())
     .then(data => {

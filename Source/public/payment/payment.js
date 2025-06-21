@@ -79,7 +79,8 @@ async function loadScript(src) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(customerData)
+        body: JSON.stringify(customerData),
+        credentials: 'include'
       });
   
       const result = await response.json();
@@ -117,7 +118,8 @@ async function displayRazorpay() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(data) // Include this if you want to send data
+        body: JSON.stringify(data), // Include this if you want to send data
+        credentials: 'include'
       });
       
       if (!response.ok) {
@@ -158,7 +160,8 @@ async function displayRazorpay() {
                 headers: {
                   "Content-Type": "application/json"
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                credentials: 'include'
             });
               
             if (!successResponse.ok) {
