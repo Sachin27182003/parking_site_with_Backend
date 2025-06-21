@@ -13,12 +13,12 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors({
-    // origin: "https://deliverpizzasite.netlify.app", // NO trailing slash
-    origin: "https://customised-parking-site.netlify.app", // NO trailing slash
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies if needed
-}));
+// app.use(cors({
+//     // origin: "https://deliverpizzasite.netlify.app", // NO trailing slash
+//     origin: "https://customised-parking-site.netlify.app", // NO trailing slash
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true, // Allow cookies if needed
+// }));
 
 app.use(cookieParser());
 app.use(bodyParser.json());
