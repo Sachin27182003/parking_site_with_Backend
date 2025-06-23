@@ -1,5 +1,6 @@
 const {validateLogin} = require('../Services/authService');
 require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 async function login(req, res){
 

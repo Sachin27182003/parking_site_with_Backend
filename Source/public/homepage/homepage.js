@@ -5,6 +5,10 @@ let isDeleting = false;
 const typingSpeed = 150; // Typing speed in milliseconds
 const deletingSpeed = 75; // Deleting speed in milliseconds
 const pauseDuration = 1500; // Pause before starting to delete
+const Sign_in_button = document.getElementById('Sign-in');
+const Sign_up_button = document.getElementById('Sign-up');
+const inputField = document.getElementById('Number-input');
+const logout_button = document.getElementById('logout');
 
 function type() {
     if (isDeleting) {
@@ -37,7 +41,6 @@ type();
 
 let isLoggedin = false;
 
-const inputField = document.getElementById('Number-input');
 
 // Initial setup to add the prefix
 inputField.value = '+91'; 
@@ -66,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })
     .then(res => res.json())
     .then(data => {
+        console.log(data);
       if (data.authenticated) {
         console.log("✅ Logged in");
 
@@ -143,11 +147,9 @@ inputField.addEventListener('focus', function() {
 });
 
 
-const Sign_in_button = document.getElementById('Sign-in');
-const Sign_up_button = document.getElementById('Sign-up');
 
 Sign_in_button.addEventListener('click', function(event){
-
+    console.log("Sign in button clicked");
     setTimeout(() => {
         window.location.href = `../loginpage/login.html?`;
     }, 100);
@@ -155,7 +157,7 @@ Sign_in_button.addEventListener('click', function(event){
 })
 
 Sign_up_button.addEventListener('click', ()=>{
-    
+    console.log("Sign up button clicked");
     setTimeout(() => {
         window.location.href = '../loginpage/login.html?signup=true';
     }, 100);
