@@ -1,4 +1,4 @@
-const { getAllButtonIds, getAllButtonIds2 } = require("../Repositories/BookingDataRepositories");
+const { getAllButtonIds, getAllButtonIds2 } = require("../Repositories/bookingDataRepositories");
 const { registerCustomer } = require("../Services/bookingDataService");
 
 
