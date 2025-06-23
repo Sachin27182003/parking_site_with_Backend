@@ -10,7 +10,7 @@ async function login(req, res){
 
         res.cookie("authToken", response.token, {
             httpOnly : true,
-            sameSite: "Lax", 
+            sameSite: "lax", 
             secure: true,
             // domain: "http://127.0.0.1:5500",
             path: "/",

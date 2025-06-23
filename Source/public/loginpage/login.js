@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       password: password_in.value
     };
 
-    fetch("http://localhost:5000/auth/login", {
+    fetch("/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
