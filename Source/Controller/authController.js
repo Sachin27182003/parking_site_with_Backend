@@ -9,11 +9,11 @@ async function login(req, res){
         const response = await validateLogin(loginPayload);
 
         res.cookie("authToken", response.token, {
-            // httpOnly : true,
+            httpOnly : true,
             sameSite: "Lax", 
-            secure: false,
+            secure: true,
             // domain: "http://127.0.0.1:5500",
-            // path: "/",
+            path: "/",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
         

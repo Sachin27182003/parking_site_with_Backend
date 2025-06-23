@@ -9,14 +9,14 @@ const path = require('path');
 const { userRouter, authRouter, paymentRouter, bookingDataRouter } = require('./Routes/Router');
 
 const app = express();
-// app.use(cors());
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(cors({
 //     // origin: "https://deliverpizzasite.netlify.app", // NO trailing slash
-//     origin: "https://customised-parking-site.netlify.app", // NO trailing slash
-//     // methods: ["GET", "POST", "PUT", "DELETE"],
+//     origin: "https://parking-site-with-backend-1.onrender.com", // NO trailing slash
+//     methods: ["GET", "POST", "PUT", "DELETE"],
 //     credentials: true, // Allow cookies if needed
 // }));
 
