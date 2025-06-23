@@ -1,6 +1,6 @@
 const express = require('express');
 const { createUser } = require('../Controller/userController');
-const {login, logout} = require('../Controller/authController');
+const {login, logout, checkAuth} = require('../Controller/authController');
 const { isLoggedIn } = require('../Validation/authValidator');
 const { paymentHandler, paymentSuccess } = require('../Controller/paymentController');
 const { createCustomer, getButtonIds, getButtonIds2 } = require('../Controller/bookingDataController');
@@ -14,6 +14,7 @@ const bookingDataRouter = express.Router();
 userRouter.post('/', createUser);
 authRouter.post('/login', login);
 authRouter.post('/logout', isLoggedIn, logout);
+authRouter.get('/check',  checkAuth);
 paymentRouter.post('/orders', isLoggedIn, paymentHandler);
 paymentRouter.post('/success', isLoggedIn, paymentSuccess);
 bookingDataRouter.post('/create', isLoggedIn, createCustomer);

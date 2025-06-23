@@ -74,7 +74,7 @@ async function loadScript(src) {
 
   async function createCustomer(customerData) {
     try {
-      const response = await fetch("http://localhost:5000/ticket/create", {
+      const response = await fetch("/ticket/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -113,7 +113,7 @@ async function displayRazorpay() {
         receipt: `PS${Username}${Date.now()}`,
     }
 
-    const response = await fetch("http://localhost:5000/payment/orders", {
+    const response = await fetch("/payment/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -155,7 +155,7 @@ async function displayRazorpay() {
                 razorpaySignature: response.razorpay_signature,
             };
 
-            const successResponse = await fetch("http://localhost:5000/payment/success", {
+            const successResponse = await fetch("/payment/success", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"

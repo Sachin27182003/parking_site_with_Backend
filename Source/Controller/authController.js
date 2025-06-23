@@ -1,4 +1,5 @@
 const {validateLogin} = require('../Services/authService');
+require("dotenv").config();
 
 async function login(req, res){
 
@@ -60,8 +61,27 @@ async function logout(req, res){
     })
 }
 
+async function checkAuth(req, res){
+    const token = req.cookies.authToken;
+
+    if (!token) {
+        return res.status(200).json({ authenticated: false });
+    }
+
+    try {
+        // ✅ Replace "your_jwt_secret" with your actual secret key
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        return res.status(200).json({
+            authenticated: true,
+            user: decoded // optionally return user info
+        });
+    } catch (err) {
+        return res.status(200).json({ authenticated: false });
+    }
+}
+
 module.exports = {
     login,
-    logout
-    
+    logout,
+    checkAuth
 }

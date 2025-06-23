@@ -1,23 +1,27 @@
-// Check for payment success status on page load
-function parseCookies() {
-    const cookies = {};
-    document.cookie.split(';').forEach(cookie => {
-        const [name, ...rest] = cookie.trim().split('=');
-        cookies[name] = rest.join('='); // rejoin in case value has "="
+// Check for payment success status on page loadconst logout_button = document.getElementById('logout');
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetch("/auth/check", {
+    method: "GET",
+    credentials: "include" // 🔥 This is critical to send cookies
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (!data.authenticated) {
+        alert("You are not authorized! Please login first");
+        window.location.href = "../homepage/homepage.html";
+      } else {
+        console.log("✅ User authenticated");
+        // Optional: set logout button visibility here
+        logout_button.style.display = "block";
+      }
+    })
+    .catch(err => {
+      console.error("Auth check failed:", err);
+      window.location.href = "../homepage/homepage.html"; // fallback if error
     });
-    return cookies;
-  }
-  
-  const logout_button = document.getElementById('logout');
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const cookies = parseCookies();
-  
-    if (!cookies.authToken || cookies.authToken.length <= 20) {
-      alert("You are not authorized! Please login first");
-      window.location.href = "../homepage/homepage.html";
-    } 
-  });
+});
+
 
 const details = new URLSearchParams(window.location.search);
 const vehicleType = details.get('vehicleType');
@@ -28,7 +32,7 @@ const complexName = "beta";
 
 window.addEventListener('load', function() {
     
-    fetch('http://localhost:5000/beta/slots')
+    fetch('/beta/slots')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);

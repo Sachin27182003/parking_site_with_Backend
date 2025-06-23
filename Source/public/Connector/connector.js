@@ -1,20 +1,21 @@
-function parseCookies() {
-  const cookies = {};
-  document.cookie.split(";").forEach((cookie) => {
-    const [name, ...rest] = cookie.trim().split("=");
-    cookies[name] = rest.join("="); // rejoin in case value has "="
-  });
-  return cookies;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  const cookies = parseCookies();
-
-  if (!cookies.authToken || cookies.authToken.length <= 20) {
-    alert("You are not authorized! Please login first");
-    window.location.href = "../homepage/homepage.html";
-  }
+  fetch("/auth/check", {
+    method: "GET",
+    credentials: "include", // 🔥 this sends the cookie with the request
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (!data.authenticated) {
+        alert("You are not authorized! Please login first");
+        window.location.href = "../homepage/homepage.html";
+      }
+    })
+    .catch(err => {
+      console.error("Auth check failed:", err);
+      window.location.href = "../homepage/homepage.html";
+    });
 });
+
 
 const details = new URLSearchParams(window.location.search);
 const vehicleType = details.get("vehicleType");

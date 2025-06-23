@@ -59,42 +59,36 @@ inputField.addEventListener('input', function() {
 
 
 
-function parseCookies() {
-    const cookies = {};
-    document.cookie.split(';').forEach(cookie => {
-        const [name, ...rest] = cookie.trim().split('=');
-        cookies[name] = rest.join('='); // rejoin in case value has "="
-    });
-    return cookies;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/auth/check", {
+    method: "GET",
+    credentials: "include"
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.authenticated) {
+        console.log("✅ Logged in");
 
-const logout_button = document.getElementById('logout');
-
-document.addEventListener('DOMContentLoaded', () => {
-    const cookies = parseCookies();
-    console.log("Parsed cookies:", cookies);
-
-    if (cookies.authToken && cookies.authToken.length > 20) {
-
-        isLoggedin = true;
-
-            Sign_in_button.style.display = 'none';
-            Sign_up_button.style.display = 'none';
-            logout_button.style.display = 'block';
-        
-    } else {
-        console.log('❌ No valid auth token found. User is not logged in.');
+        Sign_in_button.style.display = 'none';
+        Sign_up_button.style.display = 'none';
+        logout_button.style.display = 'block';
+      } else {
+        console.log("❌ Not logged in");
 
         Sign_in_button.style.display = 'block';
         Sign_up_button.style.display = 'block';
         logout_button.style.display = 'none';
-
-    }
+      }
+    })
+    .catch(err => {
+      console.error("Auth check failed:", err);
+    });
 });
+
 
 logout_button.addEventListener('click', () => {
     // Make an API request to invalidate the session on the server
-    fetch('http://localhost:5000/auth/logout', {
+    fetch('/auth/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

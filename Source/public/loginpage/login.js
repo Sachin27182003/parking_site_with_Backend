@@ -3,25 +3,26 @@ document.querySelector('.img__btn').addEventListener('click', function() {
   document.querySelector('.cont').classList.toggle('s--signup');
 });
 
-function parseCookies() {
-  const cookies = {};
-  document.cookie.split(';').forEach(cookie => {
-      const [name, ...rest] = cookie.trim().split('=');
-      cookies[name] = rest.join('='); // rejoin in case value has "="
-  });
-  return cookies;
-}
 
 const logout_button = document.getElementById('logout');
 
 document.addEventListener('DOMContentLoaded', () => {
-  const cookies = parseCookies();
-
-  if (cookies.authToken && cookies.authToken.length > 20) {
-    alert("You are already logged in");
-    window.location.href = "../homepage/homepage.html";
-  } 
+  fetch("/auth/check", {
+    method: "GET",
+    credentials: "include"
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.authenticated) {
+      alert("You are already logged in");
+      window.location.href = "../homepage/homepage.html";
+    }
+  })
+  .catch(err => {
+    console.error("Auth check failed:", err);
+  });
 });
+
 
   function addToLocalStorage(info){
     localStorage.setItem("data", JSON.stringify(info));
@@ -192,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       password: password__up
     }
 
-    fetch('http://localhost:5000/users', {
+    fetch('/users', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
