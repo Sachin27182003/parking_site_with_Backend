@@ -1,5 +1,5 @@
 
-const { createCustomer } = require('../Repositories/BookingDataRepositories');
+const { createCustomer } = require('../Repositories/bookingDataRepositories');
 
 
     
