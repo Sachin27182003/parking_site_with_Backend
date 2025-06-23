@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!data.authenticated) {
         alert("You are not authorized! Please login first");
         window.location.href = "../homepage/homepage.html";
-      }
+      } 
     })
     .catch(err => {
       console.error("Auth check failed:", err);
@@ -30,14 +30,19 @@ const complexName = "alpha";
 
 window.addEventListener('load', function() {
     
-    fetch('/alpha/slots')
+    fetch('/ticket/alpha/slots', {
+        method: 'GET',
+        credentials: 'include'
+    })
   .then(response => {
+    console.log(response);
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);
     }
     return response.json(); // Assuming the response is JSON
   })
   .then(data => {
+    console.log(data);
     console.log('Data received:', data.data);
     // You can now use the data in your application
 

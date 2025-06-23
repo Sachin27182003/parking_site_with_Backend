@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
   })
     .then(res => res.json())
     .then(data => {
-      if (!data.authenticated) {
-        alert("You are not authorized! Please login first");
-        window.location.href = "../homepage/homepage.html";
-      } else {
-        console.log("✅ User authenticated");
-        // Optional: set logout button visibility here
-        logout_button.style.display = "block";
-      }
-    })
+        if (!data.authenticated) {
+          console.warn("❌ User not authenticated");
+          alert("You are not authorized! Please login first");
+         window.location.href = "../homepage/homepage.html";
+        } else {
+            console.log("✅ User authenticated");
+        }
+})
     .catch(err => {
       console.error("Auth check failed:", err);
       window.location.href = "../homepage/homepage.html"; // fallback if error
@@ -32,7 +31,10 @@ const complexName = "beta";
 
 window.addEventListener('load', function() {
     
-    fetch('/beta/slots')
+    fetch('/ticket/beta/slots', {
+        method: 'GET',
+        credentials: 'include'
+    })
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);

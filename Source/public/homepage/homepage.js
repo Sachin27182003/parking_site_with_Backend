@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(data);
       if (data.authenticated) {
         console.log("✅ Logged in");
-
+        isLoggedin = true;
         Sign_in_button.style.display = 'none';
         Sign_up_button.style.display = 'none';
         logout_button.style.display = 'block';
